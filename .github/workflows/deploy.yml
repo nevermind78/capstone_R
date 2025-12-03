@@ -31,6 +31,16 @@ jobs:
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      # CACHE pour Python packages
+      - name: Cache pip packages
+        uses: actions/cache@v3
+        id: cache-pip
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('.github/workflows/deploy.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Install Python and Jupyter
         run: |
           python3 -m pip install --upgrade pip
@@ -41,8 +51,22 @@ jobs:
         with:
           r-version: '4.3'
 
+      # CACHE pour R packages
+      - name: Cache R packages
+        uses: actions/cache@v3
+        id: cache-r
+        with:
+          path: |
+            /usr/local/lib/R/site-library
+            ~/.R/library
+            ~/R/library
+          key: ${{ runner.os }}-r4.3-packages-${{ hashFiles('.github/workflows/deploy.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-r4.3-packages-
+
       # ÉTAPE CRITIQUE : Installation R depuis BINAIRES SEULEMENT
       - name: Install R packages FROM BINARIES (NO SOURCE COMPILATION)
+        if: steps.cache-r.outputs.cache-hit != 'true'
         run: |
           echo "⚡⚡⚡ INSTALLATION R - BINAIRES UNIQUEMENT ⚡⚡⚡"
           echo "⚠️  COMPILATION SOURCE : DÉSACTIVÉE"
@@ -188,8 +212,20 @@ jobs:
           "
           
           echo "✅ Installation R terminée"
-# AJOUTER CETTE ÉTAPE : Installer TinyTeX
+
+      # CACHE pour TinyTeX (partagé avec le workflow PDFs)
+      - name: Cache TinyTeX
+        uses: actions/cache@v3
+        id: cache-tinytex
+        with:
+          path: ~/.TinyTeX
+          key: ${{ runner.os }}-tinytex-shared
+          restore-keys: |
+            ${{ runner.os }}-tinytex-
+
+      # Installer TinyTeX seulement si pas dans le cache
       - name: Install TinyTeX for LaTeX formulas
+        if: steps.cache-tinytex.outputs.cache-hit != 'true'
         run: |
           echo "📄 Installation de TinyTeX pour les formules..."
           
@@ -224,16 +260,48 @@ jobs:
           which pdflatex
           pdflatex --version
           echo "✅ TinyTeX installé"
+
+      # S'assurer que le PATH TinyTeX est disponible même avec cache
+      - name: Setup LaTeX PATH
+        run: |
+          export PATH="$HOME/.TinyTeX/bin/x86_64-linux:$PATH"
+          echo "$HOME/.TinyTeX/bin/x86_64-linux" >> $GITHUB_PATH
+          echo "🔍 Vérification pdflatex:"
+          which pdflatex || echo "pdflatex pas encore dans PATH"
+
+      # CACHE pour le rendu Quarto
+      - name: Cache Quarto output
+        uses: actions/cache@v3
+        id: cache-quarto
+        with:
+          path: |
+            docs/
+            _freeze/
+            .quarto-cache/
+          key: ${{ runner.os }}-quarto-${{ hashFiles('**/*.qmd', '**/_quarto.yml', '**/*.bib', '**/*.csl') }}
+          restore-keys: |
+            ${{ runner.os }}-quarto-
+
       - name: Render Quarto website
         run: |
           echo "🚀 Rendu du site Quarto..."
           
-          # Rendre avec cache désactivé (plus fiable)
-          quarto render --no-cache
+          # Si pas de cache, faire un rendu complet
+          if [ "${{ steps.cache-quarto.outputs.cache-hit }}" != 'true' ]; then
+            echo "📝 Rendu complet nécessaire..."
+            quarto render --no-cache
+          else
+            echo "✅ Utilisation du cache Quarto"
+            # Vérifier que docs/ existe depuis le cache
+            if [ ! -d "docs" ]; then
+              echo "⚠️  Cache présent mais docs/ manquant, rendu complet..."
+              quarto render --no-cache
+            fi
+          fi
           
           echo "✅ Rendu terminé"
 
-      # ÉTAPE CRITIQUE : Post-traitement SANS JEKYL
+      # ÉTAPE CRITIQUE : Post-traitement SANS JEKYLL
       - name: Post-process to ELIMINATE Jekyll
         run: |
           echo "🛑 ÉLIMINATION DÉFINITIVE DE JEKYLL..."
@@ -274,17 +342,13 @@ jobs:
           echo "  - .nojekyll présent: $(test -f docs/.nojekyll && echo 'OUI' || echo 'NON')"
           echo "  - Fichiers .scss restants: $(find docs -name '*.scss' 2>/dev/null | wc -l)"
           echo "  - Fichiers .sass restants: $(find docs -name '*.sass' 2>/dev/null | wc -l)"
-          
-          # Lister les premiers fichiers
-          echo "📁 Premier fichiers dans docs/:"
-          ls -la docs/ | head -5
 
-      - name: Deploy to GitHub Pages (custom branch)
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
-          publish_branch: gh-pages-quarto  # Branche custom pour éviter conflits
+          publish_branch: gh-pages  # Branche standard pour GitHub Pages
           force_orphan: true
           keep_files: false
           user_name: 'github-actions[bot]'
