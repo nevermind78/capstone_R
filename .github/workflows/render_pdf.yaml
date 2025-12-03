@@ -1,0 +1,57 @@
+name: Render PDFs
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'qmd/**'
+      - 'bib.bib'
+      - 'apa.csl'
+
+jobs:
+  render-pdfs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Setup Quarto
+      uses: quarto-dev/quarto-actions/setup@v2
+    
+    - name: Setup TinyTeX
+      uses: r-lib/actions/setup-tinytex@v2
+    
+    - name: Install LaTeX packages
+      run: |
+        tlmgr install \
+          geometry \
+          hyperref \
+          fancyhdr \
+          sectsty \
+          microtype \
+          booktabs \
+          array \
+          pdfpages \
+          wrapfig \
+          float \
+          caption \
+          subcaption
+    
+    - name: Render PDFs
+      run: |
+        # Rendre les PDFs spécifiques
+        for file in qmd/*.qmd; do
+          if [[ -f "$file" ]]; then
+            echo "Rendu de $file en PDF..."
+            quarto render "$file" --to pdf || echo "Échec du rendu PDF pour $file"
+          fi
+        done
+    
+    - name: Upload PDF artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: pdf-outputs
+        path: |
+          qmd/*.pdf
+        retention-days: 7

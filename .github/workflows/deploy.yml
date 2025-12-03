@@ -1,0 +1,138 @@
+name: Deploy Quarto Website
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        submodules: recursive
+    
+    - name: Setup Quarto
+      uses: quarto-dev/quarto-actions/setup@v2
+    
+    - name: Setup Python (pour certaines extensions)
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Setup R (pour le rendu local et dépendances)
+      uses: r-lib/actions/setup-r@v2
+      with:
+        r-version: '4.3.2'
+    
+    - name: Cache Quarto dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cache/quarto
+          ~/.local/share/quarto
+        key: ${{ runner.os }}-quarto-${{ hashFiles('**/_quarto.yml', '**/*.qmd') }}
+        restore-keys: |
+          ${{ runner.os }}-quarto-
+    
+    - name: Install Quarto extensions (WebR)
+      run: |
+        # Vérifier et installer les extensions nécessaires
+        if [ ! -d "_extensions" ]; then
+          echo "Installation des extensions..."
+          quarto add coatless/webr
+        else
+          echo "Extensions déjà présentes"
+        fi
+        
+        # Lister les extensions installées
+        quarto list extensions
+    
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          libcurl4-openssl-dev \
+          libssl-dev \
+          libxml2-dev \
+          libfontconfig1-dev \
+          libharfbuzz-dev \
+          libfribidi-dev \
+          libfreetype6-dev \
+          libpng-dev \
+          libtiff5-dev \
+          libjpeg-dev \
+          libicu-dev \
+          pandoc \
+          pandoc-citeproc
+    
+    - name: Install TinyTeX (pour PDF)
+      uses: r-lib/actions/setup-tinytex@v2
+      with:
+        version: '2024.03'
+    
+    - name: Install R packages pour le rendu
+      run: |
+        Rscript -e "install.packages(c('rmarkdown', 'knitr', 'ggplot2', 'dplyr', 'tidyr', 'readxl', 'lubridate'), repos = 'https://cloud.r-project.org')"
+        
+        # Packages pour les tests statistiques
+        Rscript -e "install.packages(c('car', 'lmtest', 'nortest', 'MASS'), repos = 'https://cloud.r-project.org')"
+    
+    - name: Render website
+      run: |
+        echo "Rendu du site Quarto..."
+        
+        # Rendre toutes les pages
+        quarto render
+        
+        # Vérification
+        echo "Structure du dossier docs/:"
+        ls -la docs/
+        
+        echo "Pages générées:"
+        find docs/ -name "*.html" | head -20
+    
+    - name: Add necessary files for GitHub Pages
+      run: |
+        # .nojekyll est essentiel
+        touch docs/.nojekyll
+        
+        # Copier les fichiers nécessaires
+        if [ -f ".gitignore" ]; then
+          cp .gitignore docs/
+        fi
+        
+        if [ -f "README.md" ]; then
+          cp README.md docs/
+        fi
+        
+        # Créer un fichier index si absent
+        if [ ! -f "docs/index.html" ]; then
+          echo "<html><body><h1>Site en construction</h1><p>Le site est en cours de déploiement.</p></body></html>" > docs/index.html
+        fi
+    
+    - name: Setup Pages
+      uses: actions/configure-pages@v3
+    
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        path: ./docs
+    
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v2
