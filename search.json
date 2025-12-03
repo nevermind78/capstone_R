@@ -1,0 +1,849 @@
+[
+  {
+    "objectID": "test_stat.html#statistical-testing-framework",
+    "href": "test_stat.html#statistical-testing-framework",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Statistical Testing Framework",
+    "text": "Statistical Testing Framework"
+  },
+  {
+    "objectID": "test_stat.html#one-sample-t-test",
+    "href": "test_stat.html#one-sample-t-test",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "One Sample t-Test",
+    "text": "One Sample t-Test\nMathematical Foundation\nTests whether population mean \\(\\mu\\) equals specified value \\(\\mu_0\\):\nTest statistic: \\(t = \\dfrac{\\bar{x} - \\mu_0}{s/\\sqrt{n}}\\)\nwhere:\n\n\n\n\\(\\bar{x}\\)\n\n\nsample mean\n\n\n\n\n\\(s\\)\n\n\nsample standard deviation\n\n\n\n\n\\(n\\)\n\n\nsample size\n\n\n\n\n\\(df = n - 1\\)\n\n\ndegrees of freedom\n\n\n\n\n\n\nData are normally distributed\n\n\n\n\n\n\nObservations are independent"
+  },
+  {
+    "objectID": "test_stat.html#two-sample-t-test",
+    "href": "test_stat.html#two-sample-t-test",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Two Sample t-Test",
+    "text": "Two Sample t-Test\nIndependent Samples t-Test\nTests whether two population means are equal:\nTest statistic: \\[t = \\frac{\\bar{x}_1 - \\bar{x}_2}{s_p \\sqrt{\\frac{1}{n_1} + \\frac{1}{n_2}}}\\]\nPooled standard deviation: \\[s_p = \\sqrt{\\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 - 2}}\\]\nDegrees of freedom: \\(df = n_1 + n_2 - 2\\)"
+  },
+  {
+    "objectID": "test_stat.html#paired-t-test",
+    "href": "test_stat.html#paired-t-test",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Paired t-Test",
+    "text": "Paired t-Test\nMathematical Formulation\nTests mean difference between paired observations:\nTest statistic: \\(t = \\dfrac{\\bar{d}}{s_d/\\sqrt{n}}\\)\nwhere:\n\n\n\n\\(d_i = x_{i1} - x_{i2}\\)\n\n\npaired differences\n\n\n\n\n\\(\\bar{d}\\)\n\n\nmean of differences\n\n\n\n\n\\(s_d\\)\n\n\nstandard deviation of differences\n\n\n\n\n\\(n\\)\n\n\nnumber of pairs\n\n\n\n\n\\(df = n - 1\\)\n\n\ndegrees of freedom\n\n\n\n\n\n\nDifferences are normally distributed\n\n\n\n\n\n\nPairs are dependent/related"
+  },
+  {
+    "objectID": "test_stat.html#effect-size-measures",
+    "href": "test_stat.html#effect-size-measures",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Effect Size Measures",
+    "text": "Effect Size Measures\nCohen’s d\nStandardized mean difference:\nFor one sample: \\(d = \\frac{\\bar{x} - \\mu_0}{s}\\)\nFor two independent samples: \\(d = \\frac{\\bar{x}_1 - \\bar{x}_2}{s_p}\\)\n\n\n\n\\(s_p\\)\n\n\npooled standard deviation\n\n\n\n\n0.2\n\n\nSmall effect\n\n\n\n\n0.5\n\n\nMedium effect\n\n\n\n\n0.8\n\n\nLarge effect"
+  },
+  {
+    "objectID": "test_stat.html#non-parametric-tests",
+    "href": "test_stat.html#non-parametric-tests",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Non-Parametric Tests",
+    "text": "Non-Parametric Tests\nMann-Whitney U Test (Wilcoxon Rank-Sum)\nNon-parametric alternative to two-sample t-test:\nTest statistic: \\[U = \\min(U_1, U_2)\\] where: \\[U_1 = n_1n_2 + \\frac{n_1(n_1+1)}{2} - R_1\\] \\[U_2 = n_1n_2 + \\frac{n_2(n_2+1)}{2} - R_2\\]\n\n\\(R_1, R_2\\) = sum of ranks for groups 1 and 2\nTests whether distributions differ in location"
+  },
+  {
+    "objectID": "test_stat.html#chi-square-tests",
+    "href": "test_stat.html#chi-square-tests",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Chi-Square Tests",
+    "text": "Chi-Square Tests\nChi-Square Goodness of Fit Test\nTests whether observed frequencies match expected distribution:\nTest statistic: \\[\\chi^2 = \\sum \\frac{(O_i - E_i)^2}{E_i}\\]\nwhere:\n\n\n\n\\(O_i\\)\n\n\nobserved frequency in category i\n\n\n\n\n\\(E_i\\)\n\n\nexpected frequency in category i\n\n\n\n\n\\(df\\)\n\n\n\\(k - 1\\)\n\n\n\n\n\\(k\\)\n\n\n# where k = number of categories"
+  },
+  {
+    "objectID": "test_stat.html#fishers-exact-test",
+    "href": "test_stat.html#fishers-exact-test",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Fisher’s Exact Test",
+    "text": "Fisher’s Exact Test\nMathematical Basis\nExact test for 2×2 contingency tables:\nProbability of observed configuration: \\[p = \\frac{\\binom{a+b}{a} \\binom{c+d}{c} \\binom{a+c}{a} \\binom{b+d}{b}}{\\binom{n}{a+b}}\\]\nwhere the table is:\n         | Col1 | Col2 | Total\nRow1     |  a   |  b   | a+b\nRow2     |  c   |  d   | c+d\nTotal    | a+c  | b+d  | n\nUse when: Expected frequencies &lt; 5 or small sample sizes"
+  },
+  {
+    "objectID": "test_stat.html#anova-analysis-of-variance",
+    "href": "test_stat.html#anova-analysis-of-variance",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "ANOVA (Analysis of Variance)",
+    "text": "ANOVA (Analysis of Variance)\nOne-Way ANOVA\nTests equality of means across 3+ groups:\nF-statistic: \\(F = \\frac{MS_{B}}{MS_{W}}\\)\nwhere:\n\n\n\nMSB\n\n\n\\(MS_B = \\frac{SS_B}{df_B}\\)\n\n\n\\(df_{B} = k - 1\\)\n\n\n\n\nMSW\n\n\n\\(MS_W = \\frac{SS_W}{df_W}\\)\n\n\n\\(df_{W} = N - k\\)\n\n\n\n\nSSB\n\n\n\\(SS_B = \\sum n_i(\\bar{x}_i - \\bar{x})^2\\)\n\n\n\n\n\n\nSSW\n\n\n\\(SS_W = \\sum \\sum (x_{ij} - \\bar{x}_i)^2\\)\n\n\n\n\n\n\nB = Between\nW = Within"
+  },
+  {
+    "objectID": "test_stat.html#assumption-checking",
+    "href": "test_stat.html#assumption-checking",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Assumption Checking",
+    "text": "Assumption Checking\nNormality Tests"
+  },
+  {
+    "objectID": "test_stat.html#power-analysis",
+    "href": "test_stat.html#power-analysis",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Power Analysis",
+    "text": "Power Analysis\nSample Size Calculation\nFor t-test: \\[n = \\left( \\frac{(z_{1-\\alpha/2} + z_{1-\\beta}) \\cdot \\sigma}{\\delta} \\right)^2\\]\nwhere:\n\n\n\n\\(\\alpha\\)\n\n\nsig. level\n\n\n\n\n\\(\\beta\\)\n\n\nType II error rate\n\n\n\n\n\\(1-\\beta\\)\n\n\npower\n\n\n\n\n\\(\\delta\\)\n\n\neffect size\n\n\n\n\n\\(\\sigma\\)\n\n\nstandard deviation"
+  },
+  {
+    "objectID": "test_stat.html#summary-table-of-tests",
+    "href": "test_stat.html#summary-table-of-tests",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Summary Table of Tests",
+    "text": "Summary Table of Tests\n\n\n\n\n\n\n\n\n\nTest\nPurpose\nR Function\nKey Assumptions\n\n\n\n\nOne-sample t-test\nCompare mean to value\nt.test(x, mu)\nNormality, independence\n\n\nTwo-sample t-test\nCompare two means\nt.test(x, y)\nNormality, equal variances*\n\n\nPaired t-test\nCompare paired means\nt.test(x, y, paired=TRUE)\nNormality of differences\n\n\nMann-Whitney\nNon-parametric two samples\nwilcox.test(x, y)\nIndependent samples\n\n\nWilcoxon signed-rank\nNon-parametric paired\nwilcox.test(x, y, paired=TRUE)\nPaired data\n\n\nChi-square\nCategorical association\nchisq.test(table)\nExpected frequencies ≥ 5\n\n\nFisher’s exact\nSmall contingency tables\nfisher.test(table)\nFixed margins\n\n\nANOVA\nCompare 3+ means\naov(y ~ group)\nNormality, equal variances\n\n\n\n*Welch’s t-test doesn’t assume equal variances"
+  },
+  {
+    "objectID": "test_stat.html#best-practices",
+    "href": "test_stat.html#best-practices",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Best Practices",
+    "text": "Best Practices\n\nAlways check assumptions before interpreting results\nUse non-parametric tests when assumptions are violated\nReport effect sizes along with p-values\nConsider multiple testing corrections when appropriate\nUse confidence intervals to understand precision\nVisualize your data before running tests"
+  },
+  {
+    "objectID": "qmd/other.html#welcome",
+    "href": "qmd/other.html#welcome",
+    "title": "quarto-webr Demo RevealJS Document",
+    "section": "Welcome",
+    "text": "Welcome\nWelcome to a demo RevealJS presentation that uses the quarto-webr extension to generate interactive code cells with Quarto and webR.\n\n\n\n\n\n\nImportant\n\n\nThis template requires a pre-release version of Quarto that is 1.4.502 or greater that contains an updated copy of pandoc. For more details, please see Issue #14.\n\n\n\nNot the right template? Let’s go back to the documentation portal",
+    "crumbs": [
+      "other",
+      "quarto-webr Demo RevealJS Document"
+    ]
+  },
+  {
+    "objectID": "qmd/other.html#webr-in-revealjs",
+    "href": "qmd/other.html#webr-in-revealjs",
+    "title": "quarto-webr Demo RevealJS Document",
+    "section": "webR in RevealJS",
+    "text": "webR in RevealJS\nThis is a webR-enabled code cell in a Quarto RevealJS document.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "other",
+      "quarto-webr Demo RevealJS Document"
+    ]
+  },
+  {
+    "objectID": "qmd/other.html#base-r-graphing-with-webr",
+    "href": "qmd/other.html#base-r-graphing-with-webr",
+    "title": "quarto-webr Demo RevealJS Document",
+    "section": "Base R Graphing with webR",
+    "text": "Base R Graphing with webR\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "other",
+      "quarto-webr Demo RevealJS Document"
+    ]
+  },
+  {
+    "objectID": "qmd/other.html#ggplot2-in-webr",
+    "href": "qmd/other.html#ggplot2-in-webr",
+    "title": "quarto-webr Demo RevealJS Document",
+    "section": "ggplot2 in webR",
+    "text": "ggplot2 in webR\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "other",
+      "quarto-webr Demo RevealJS Document"
+    ]
+  },
+  {
+    "objectID": "qmd/other.html#help-documentation",
+    "href": "qmd/other.html#help-documentation",
+    "title": "quarto-webr Demo RevealJS Document",
+    "section": "Help Documentation",
+    "text": "Help Documentation\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "other",
+      "quarto-webr Demo RevealJS Document"
+    ]
+  },
+  {
+    "objectID": "qmd/other.html#prints-warnings-and-errors",
+    "href": "qmd/other.html#prints-warnings-and-errors",
+    "title": "quarto-webr Demo RevealJS Document",
+    "section": "Prints, Warnings, and Errors",
+    "text": "Prints, Warnings, and Errors\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "other",
+      "quarto-webr Demo RevealJS Document"
+    ]
+  },
+  {
+    "objectID": "qmd/other.html#keyboard-shortcuts",
+    "href": "qmd/other.html#keyboard-shortcuts",
+    "title": "quarto-webr Demo RevealJS Document",
+    "section": "Keyboard Shortcuts",
+    "text": "Keyboard Shortcuts\n\nRun selected code using either:\n\nmacOS: ⌘ + ↩︎/Return\nWindows/Linux: Ctrl + ↩︎/Enter\n\nRun the entire code by clicking the “Run code” button or pressing Shift+↩︎.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nNote\n\n\nAvoid using within a RevealJS presentation. Only 1 instance of webR should be running.",
+    "crumbs": [
+      "other",
+      "quarto-webr Demo RevealJS Document"
+    ]
+  },
+  {
+    "objectID": "qmd/other.html#fin",
+    "href": "qmd/other.html#fin",
+    "title": "quarto-webr Demo RevealJS Document",
+    "section": "Fin",
+    "text": "Fin\nThanks for checking out the demo! Let’s head back to the documentation portal.",
+    "crumbs": [
+      "other",
+      "quarto-webr Demo RevealJS Document"
+    ]
+  },
+  {
+    "objectID": "qmd/05-distributions-fruits-tidyverse.html",
+    "href": "qmd/05-distributions-fruits-tidyverse.html",
+    "title": "Distribution and Confidence Intervals of Clementines",
+    "section": "",
+    "text": "The example aims to demonstrate estimation and interpretation of confidence intervals. At the end, the two samples are compared with respect to variance and mean values.\nThe experimental hypotheses was, that weight and size of two samples of Clementine fruits differ. The result is to be visualized with bar charts or box plots. We use only the weight as an example, analysis of the other statistical parameters is left as an optional exercise.\nWe can now derive the following statistical hypotheses about the variance:\n\n\\(H_0\\): The variance of both samples is the same.\n\\(H_a\\): The samples have different variance.\n\nand about the mean:\n\n\\(H_0\\): The mean of both samples is the same.\n\\(H_a\\): The mean values of the samples are different.",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Clementines"
+    ]
+  },
+  {
+    "objectID": "qmd/05-distributions-fruits-tidyverse.html#prepare-and-inspect-data",
+    "href": "qmd/05-distributions-fruits-tidyverse.html#prepare-and-inspect-data",
+    "title": "Distribution and Confidence Intervals of Clementines",
+    "section": "3.1 Prepare and inspect data",
+    "text": "3.1 Prepare and inspect data\n\nDownload the data set fruits-2023-hse.csv and use one of RStudio’s “Import Dataset” wizards.\nA better alternative is to use read.csv().\nThe data set is available in OPAL1 or from: https://raw.githubusercontent.com/tpetzoldt/datasets/refs/heads/main/data/fruits-2023-hse.csv\n\n\nplot everything, just for testing:\n\n\nsplit table for box1 and box2:\n\n\ncompare weight of both groups:\n\nNote: It is also possible to use boxplot with the model formula syntax. This is the preferred way, because it does not require to split the data set beforehand:",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Clementines"
+    ]
+  },
+  {
+    "objectID": "qmd/05-distributions-fruits-tidyverse.html#check-distribution",
+    "href": "qmd/05-distributions-fruits-tidyverse.html#check-distribution",
+    "title": "Distribution and Confidence Intervals of Clementines",
+    "section": "3.2 Check distribution",
+    "text": "3.2 Check distribution\nWe can check the shape of distribution graphically. If mean values of the samples differ much, it has to be done separately for each sample.",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Clementines"
+    ]
+  },
+  {
+    "objectID": "qmd/05-distributions-fruits-tidyverse.html#sample-statistics",
+    "href": "qmd/05-distributions-fruits-tidyverse.html#sample-statistics",
+    "title": "Distribution and Confidence Intervals of Clementines",
+    "section": "3.3 Sample statistics",
+    "text": "3.3 Sample statistics\nIf we assume normal distribution of the data, we can estimate an approximate prediction interval from the sample parameters, i.e. in which size range we find 95% of the weights within one group.\nWe first calculate mean, sd, N and se for “box1” data set:\nThen we estimate the two-sided 95% prediction interval for the sample, assuming normal distribution:\nInstead of using 1.96, we could also use the quantile function of the normal distribution instead, e.g. qnorm(0.975)for the upper interval or qnorm(c(0.025, 0.975)) for the lower and upper.\nIf the data set is large enough, we can compare the prediction interval from above with the empirical quantiles, i.e. take it directly from the data. Here we do not assume a normal or any other distribution.\nNow we plot the data and indicate the 95% interval:\n… and the same as histogram:",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Clementines"
+    ]
+  },
+  {
+    "objectID": "qmd/05-distributions-fruits-tidyverse.html#confidence-interval-of-the-mean",
+    "href": "qmd/05-distributions-fruits-tidyverse.html#confidence-interval-of-the-mean",
+    "title": "Distribution and Confidence Intervals of Clementines",
+    "section": "3.4 Confidence interval of the mean",
+    "text": "3.4 Confidence interval of the mean\nThe confidence interval of the mean tells us how precise a mean value was estimated from data. If the sample size is “large enough”, the distribution of the raw data does not necessarily need to be normal distributed, because then mean values tend to approximate a normal distribution due to the central limit theorem.\n\n3.4.1 Confidence interval of the mean for the “box1” data\n\nCalculate the confidence interval of the mean value of the “box1” data set,\nuse +/- 1.96 or (better) the quantile of the t-distribution:\n\nNow indicate the confidence interval of the mean in the histogram.\n\n\n3.4.2 Confidence interval for the mean of the “box2” data\nWe could now in principle do the same as above for the “box2” sample, but this would be rather cumbersome and boring. A more efficient method from package dplyr is shown below.",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Clementines"
+    ]
+  },
+  {
+    "objectID": "qmd/05-distributions-fruits-tidyverse.html#calculation-of-summary-statistics-with-dplyr",
+    "href": "qmd/05-distributions-fruits-tidyverse.html#calculation-of-summary-statistics-with-dplyr",
+    "title": "Distribution and Confidence Intervals of Clementines",
+    "section": "5.1 Calculation of summary statistics with dplyr",
+    "text": "5.1 Calculation of summary statistics with dplyr\nSummarizing can be done with two functions, group_by that adds grouping information to a data frame and summarize to calculate summary statistics. In the following, we use the full data set with 4 groups.",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Clementines"
+    ]
+  },
+  {
+    "objectID": "qmd/05-distributions-fruits-tidyverse.html#barchart-and-errorbars-with-ggplot2",
+    "href": "qmd/05-distributions-fruits-tidyverse.html#barchart-and-errorbars-with-ggplot2",
+    "title": "Distribution and Confidence Intervals of Clementines",
+    "section": "5.2 Barchart and errorbars with ggplot2",
+    "text": "5.2 Barchart and errorbars with ggplot2\nWe can then use the table of summary statistics directly for a bar chart.",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Clementines"
+    ]
+  },
+  {
+    "objectID": "qmd/05-distributions-fruits-tidyverse.html#additional-tasks",
+    "href": "qmd/05-distributions-fruits-tidyverse.html#additional-tasks",
+    "title": "Distribution and Confidence Intervals of Clementines",
+    "section": "5.3 Additional tasks",
+    "text": "5.3 Additional tasks\nRepeat the analysis with other properties of the fruits, e.g. width and height. Create box plots, analyse distribution, create bar charts.",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Clementines"
+    ]
+  },
+  {
+    "objectID": "qmd/05-distributions-fruits-tidyverse.html#footnotes",
+    "href": "qmd/05-distributions-fruits-tidyverse.html#footnotes",
+    "title": "Distribution and Confidence Intervals of Clementines",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nOPAL is the learning management system used at TU Dresden.↩︎",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Clementines"
+    ]
+  },
+  {
+    "objectID": "qmd/03-discharge-elbe.html",
+    "href": "qmd/03-discharge-elbe.html",
+    "title": "Discharge of River Elbe: Date and Time Computation, Data Management and Plotting with R",
+    "section": "",
+    "text": "This practical example demonstrates how daily discharge data of the Elbe River can be analyzed and visualized in R directly in a browser using Web-R.\nScientific aim: Learn date/time computation, data management, aggregation, and plotting.",
+    "crumbs": [
+      "Projects",
+      "Discharge of River Elbe: Date and Time Computation, Data Management and Plotting with R"
+    ]
+  },
+  {
+    "objectID": "qmd/03-discharge-elbe.html#introduction",
+    "href": "qmd/03-discharge-elbe.html#introduction",
+    "title": "Discharge of River Elbe: Date and Time Computation, Data Management and Plotting with R",
+    "section": "",
+    "text": "This practical example demonstrates how daily discharge data of the Elbe River can be analyzed and visualized in R directly in a browser using Web-R.\nScientific aim: Learn date/time computation, data management, aggregation, and plotting.",
+    "crumbs": [
+      "Projects",
+      "Discharge of River Elbe: Date and Time Computation, Data Management and Plotting with R"
+    ]
+  },
+  {
+    "objectID": "qmd/03-discharge-elbe.html#methods",
+    "href": "qmd/03-discharge-elbe.html#methods",
+    "title": "Discharge of River Elbe: Date and Time Computation, Data Management and Plotting with R",
+    "section": "2 Methods",
+    "text": "2 Methods\nWe demonstrate data import, conversion, aggregation, plotting, and pipeline usage using the tidyverse. Data are daily measurements for the Elbe River (m³/s) from Dresden, provided by BfG.",
+    "crumbs": [
+      "Projects",
+      "Discharge of River Elbe: Date and Time Computation, Data Management and Plotting with R"
+    ]
+  },
+  {
+    "objectID": "qmd/03-discharge-elbe.html#exercises",
+    "href": "qmd/03-discharge-elbe.html#exercises",
+    "title": "Discharge of River Elbe: Date and Time Computation, Data Management and Plotting with R",
+    "section": "3 Exercises",
+    "text": "3 Exercises\n\n3.1 1. Download the data and inspect it\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n3.2 2. Create date categories\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n3.3 3. Aggregate monthly data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n3.4 4. Average year plot\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n3.5 5. Annual discharge sum\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n3.6 6. Scatter plot per year\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n3.7 7. Cumulative sum per year\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n3.8 8. Min-Max Plot with ggplot2\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n3.9 9. Pivot table (wide ↔︎ long)\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Projects",
+      "Discharge of River Elbe: Date and Time Computation, Data Management and Plotting with R"
+    ]
+  },
+  {
+    "objectID": "qmd/01-pivot-tables-with-libreoffice.html",
+    "href": "qmd/01-pivot-tables-with-libreoffice.html",
+    "title": "Discharge of River Elbe: Data Management with LibreOffice",
+    "section": "",
+    "text": "Planning and maintenance of waterways and rivers needs adequate measurements and data. Raw time series can often be long and confusing, so a first step is aggregation and visualization.\nScientific aim: plot an average year and calculate monthly averages, minima and maxima of the discharge.",
+    "crumbs": [
+      "Projects",
+      "Discharge of River Elbe: Data Management with LibreOffice"
+    ]
+  },
+  {
+    "objectID": "qmd/01-pivot-tables-with-libreoffice.html#introduction",
+    "href": "qmd/01-pivot-tables-with-libreoffice.html#introduction",
+    "title": "Discharge of River Elbe: Data Management with LibreOffice",
+    "section": "",
+    "text": "Planning and maintenance of waterways and rivers needs adequate measurements and data. Raw time series can often be long and confusing, so a first step is aggregation and visualization.\nScientific aim: plot an average year and calculate monthly averages, minima and maxima of the discharge.",
+    "crumbs": [
+      "Projects",
+      "Discharge of River Elbe: Data Management with LibreOffice"
+    ]
+  },
+  {
+    "objectID": "qmd/01-pivot-tables-with-libreoffice.html#methods",
+    "href": "qmd/01-pivot-tables-with-libreoffice.html#methods",
+    "title": "Discharge of River Elbe: Data Management with LibreOffice",
+    "section": "2 Methods",
+    "text": "2 Methods\n\n2.1 Diagram\n\n\n\n\n\ngraph TD\n    A[Raw daily data - Elbe River]\n    A --&gt; B[Step 1: Data Acquisition]\n    B --&gt; C[Download CSV from URL]\n    C --&gt; D[Inspect data structure]\n    \n    D --&gt; E[Step 2: Preprocessing]\n    E --&gt; F[Rename columns]\n    F --&gt; G[Convert dates]\n    G --&gt; H[Extract year/month/day]\n    H --&gt; I[Extract weekday/DOY]\n    \n    I --&gt; J[Step 3: Aggregation]\n    J --&gt; K[Monthly aggregation]\n    J --&gt; L[Daily aggregation]\n    J --&gt; M[Annual aggregation]\n    \n    K --&gt; N[Step 4: Visualization]\n    L --&gt; O[Step 4: Visualization]\n    J --&gt; P[Step 5: Exploration]\n    J --&gt; Q[Step 5: Exploration]\n    \n    N --&gt; R[Results: Seasonal]\n    O --&gt; S[Results: Interannual]\n    P --&gt; T[Results: Yearly]\n    Q --&gt; U[Results: Accumulation]\n    \n    style A fill:#e1f5fe\n    style B fill:#f3e5f5\n    style C fill:#f3e5f5\n    style D fill:#f3e5f5\n    style E fill:#f3e5f5\n    style F fill:#f3e5f5\n    style G fill:#f3e5f5\n    style H fill:#f3e5f5\n    style I fill:#f3e5f5\n    style J fill:#e8f5e8\n    style K fill:#e8f5e8\n    style L fill:#e8f5e8\n    style M fill:#e8f5e8\n    style N fill:#fff3e0\n    style O fill:#fff3e0\n    style P fill:#fce4ec\n    style Q fill:#fce4ec\n    style R fill:#e8f5e8,stroke:#333\n    style S fill:#e8f5e8,stroke:#333\n    style T fill:#e8f5e8,stroke:#333\n    style U fill:#e8f5e8,stroke:#333\n\n\n\n\n\n\nThe approach demonstrates the use of pivot tables for aggregating data according to certain criteria. We will also use date and time computation to derive aggregation criteria from a single date column.\nThe data set consists of daily measurements for discharge of the Elbe River in Dresden (daily discharge sum in \\(\\mathrm{m^3 d^{-1}}\\)).\nData were kindly provided by the German Federal Institute for Hydrology (BfG).",
+    "crumbs": [
+      "Projects",
+      "Discharge of River Elbe: Data Management with LibreOffice"
+    ]
+  },
+  {
+    "objectID": "qmd/01-pivot-tables-with-libreoffice.html#task-1",
+    "href": "qmd/01-pivot-tables-with-libreoffice.html#task-1",
+    "title": "Discharge of River Elbe: Data Management with LibreOffice",
+    "section": "3 Task 1",
+    "text": "3 Task 1\n\n3.1 1. Download the data and inspect it\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n3.2 2. Create date categories\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n3.3 3. Aggregate data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n3.4 4. Average year plot\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n3.5 5. Annual discharge sum\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n3.6 6. Additional explorations\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Projects",
+      "Discharge of River Elbe: Data Management with LibreOffice"
+    ]
+  },
+  {
+    "objectID": "qmd/01-pivot-tables-with-libreoffice.html#conclusion",
+    "href": "qmd/01-pivot-tables-with-libreoffice.html#conclusion",
+    "title": "Discharge of River Elbe: Data Management with LibreOffice",
+    "section": "4 Conclusion",
+    "text": "4 Conclusion\nThis study demonstrated a comprehensive methodology for analyzing hydrological time series data, using the daily discharge of the Elbe River in Dresden as a case study. The analysis pipeline was organized around five key steps:",
+    "crumbs": [
+      "Projects",
+      "Discharge of River Elbe: Data Management with LibreOffice"
+    ]
+  },
+  {
+    "objectID": "qmd/01-pivot-tables-with-libreoffice.html#key-learnings",
+    "href": "qmd/01-pivot-tables-with-libreoffice.html#key-learnings",
+    "title": "Discharge of River Elbe: Data Management with LibreOffice",
+    "section": "5 Key Learnings",
+    "text": "5 Key Learnings\n\nData Structuring: Transforming raw data into usable time series requires crucial preprocessing steps, including date conversion and extraction of temporal variables (year, month, day of year).\nMulti-level Aggregation: Analysis at different temporal scales (daily, monthly, annual) reveals complementary patterns:\n\nMonthly aggregation highlights seasonal variability\nThe average year plot illustrates the annual hydrological cycle\nAnnual totals help identify interannual trends\n\nInformative Visualizations: Different visualization types (average year plot with variability bands, annual histograms, temporal scatter plots) provide specific and complementary insights into the hydrological system’s behavior.",
+    "crumbs": [
+      "Projects",
+      "Discharge of River Elbe: Data Management with LibreOffice"
+    ]
+  },
+  {
+    "objectID": "qmd/01-pivot-tables-with-libreoffice.html#practical-implications",
+    "href": "qmd/01-pivot-tables-with-libreoffice.html#practical-implications",
+    "title": "Discharge of River Elbe: Data Management with LibreOffice",
+    "section": "6 Practical Implications",
+    "text": "6 Practical Implications\nFor waterway and river management, this approach enables: - Identification of characteristic high and low water periods - Detection of anomalies or changes in hydrological regimes - Provision of reference data for planning and maintenance - Effective communication of complex patterns through synthesized visualizations",
+    "crumbs": [
+      "Projects",
+      "Discharge of River Elbe: Data Management with LibreOffice"
+    ]
+  },
+  {
+    "objectID": "qmd/01-pivot-tables-with-libreoffice.html#future-perspectives",
+    "href": "qmd/01-pivot-tables-with-libreoffice.html#future-perspectives",
+    "title": "Discharge of River Elbe: Data Management with LibreOffice",
+    "section": "7 Future Perspectives",
+    "text": "7 Future Perspectives\nThe presented methods are transferable to other river systems and types of environmental data. The aggregation and visualization steps provide a solid foundation for more advanced analyses, such as long-term trend detection, flood frequency analysis, or studying climate change impacts on hydrological regimes.\nThis study illustrates how fundamental data management and analysis techniques can transform complex raw measurements into actionable information for sustainable water resource management. The systematic approach from data acquisition through preprocessing, aggregation, and visualization provides a reproducible framework that can be adapted to various hydrological monitoring and research contexts.",
+    "crumbs": [
+      "Projects",
+      "Discharge of River Elbe: Data Management with LibreOffice"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Template Project For Elements of Applied Statistics",
+    "section": "",
+    "text": "This website contains a collection of template for capstone’s Statistics with R. The aim is to provide insight in fundamental principles and a broad overview and to enable students to select and understand specific books and online material to dig in deeper in the diverse and fascinating field of statistics."
+  },
+  {
+    "objectID": "index.html#introduction",
+    "href": "index.html#introduction",
+    "title": "Template Project For Elements of Applied Statistics",
+    "section": "",
+    "text": "This website contains a collection of template for capstone’s Statistics with R. The aim is to provide insight in fundamental principles and a broad overview and to enable students to select and understand specific books and online material to dig in deeper in the diverse and fascinating field of statistics."
+  },
+  {
+    "objectID": "index.html#related-pages",
+    "href": "index.html#related-pages",
+    "title": "Template Project For Elements of Applied Statistics",
+    "section": "2 Related Pages",
+    "text": "2 Related Pages\n\nLecture slides\nDatasets\nSource code  github"
+  },
+  {
+    "objectID": "index.html#author",
+    "href": "index.html#author",
+    "title": "Template Project For Elements of Applied Statistics",
+    "section": "3 Author",
+    "text": "3 Author\nAbdallah Khemais"
+  },
+  {
+    "objectID": "qmd/02-discharge-elbe-project.html",
+    "href": "qmd/02-discharge-elbe-project.html",
+    "title": "Discharge of River Elbe: Other",
+    "section": "",
+    "text": "The project is related to the lab exercise “Discharge of River Elbe: Date and Time Computation, Data Management and Plotting with R”."
+  },
+  {
+    "objectID": "qmd/02-discharge-elbe-project.html#outline",
+    "href": "qmd/02-discharge-elbe-project.html#outline",
+    "title": "Discharge of River Elbe: Other",
+    "section": "3.1 Outline",
+    "text": "3.1 Outline\nCombine all tasks together and tell a story, using a standard scientific outline, the so-called IMRAD scheme:\n\nIntroduction\nMethods\nResults\nDiscussion\nReferences\n\nPlease consult Wikipedia for a detailed explanation.\nAs it is a tiny report, Methods and Results may be merged in this case. However, Introduction and Discussion must be separated. Use the internet and find about 2-3 literature references for the Discussion."
+  },
+  {
+    "objectID": "qmd/02-discharge-elbe-project.html#workflow",
+    "href": "qmd/02-discharge-elbe-project.html#workflow",
+    "title": "Discharge of River Elbe: Other",
+    "section": "3.2 Workflow",
+    "text": "3.2 Workflow\n\nDraft: draft your report. The first draft is usually somewhat longer.\nRefine: Discuss and select only the most important parts, and create the final version adhering to the page limit.\n\nCommunicate in your team, with other teams and with tutors\n\nPrimary Goal: Communication should promote community learning. Post approaches and specific questions in the Matrix^Matrix chat group so everyone can benefit.\nTeamwork: Discuss ideas within your team and with other colleagues first. Private channels for teamwork are allowed.\nIn the chatroom, please formulate specific questions (e.g., “How to format the numbers on a log-transformed axis?”) and avoid asking only, “Is this correct?”\nContribute: Actively contribute to answering your classmates’ questions!"
+  },
+  {
+    "objectID": "qmd/02-discharge-elbe-project.html#report-formatting-instructions",
+    "href": "qmd/02-discharge-elbe-project.html#report-formatting-instructions",
+    "title": "Discharge of River Elbe: Other",
+    "section": "3.3 Report formatting instructions",
+    "text": "3.3 Report formatting instructions\nTo ensure clarity and efficiency, please adhere to the following strict page limits and formatting guidelines.\n\n3.3.1 Page limits and content focus\n\nCore Content Limit: The main body of the report (Introduction, Methods & Results, Discussion) must not exceed 4 A4 pages.\nThis limit forces you to distill the essential messages and choose only the most important figures.\nThe Title Page (Cover Sheet) and the List of References do not count towards the 4-page limit.\nQuality First: The goal is Quality instead of quantity! Use the limited space to focus on the interpretation and discussion of your findings.\n\n\n\n3.3.2 Text and visual balance\n\nThe report must have a good balance between explanatory text and supporting figures/tables.\nAvoid reports that are dominated by either large amounts of text or excessive, unexplained graphics.\nSelectivity: Only include figures and statistical output that are essential to support your claims in the text. Avoid “dumping” unnecessary output.\n\n\n\n3.3.3 Readability and citation standards\n\nUse a font size of 11 or 12 points.\nA line spacing of 1.2 lines is recommended to improve readability.\nFigures: font size of annotations must be well readable.\nCitation: Cite literature properly using the author-year style. Good examples can be found at the APA style web page."
+  },
+  {
+    "objectID": "qmd/02-discharge-elbe-project.html#submission",
+    "href": "qmd/02-discharge-elbe-project.html#submission",
+    "title": "Discharge of River Elbe: Other",
+    "section": "3.4 Submission",
+    "text": "3.4 Submission\nYou will have 2.5 weeks time for the preparation of the report. Then upload it as PDF or HTML document and (optionally) your .R or Quarto (.qmd) scripts to the File folder of your group in the OPAL learning management system. Submissions after the deadline cannot be considered."
+  },
+  {
+    "objectID": "qmd/04-distributions-leaves.html",
+    "href": "qmd/04-distributions-leaves.html",
+    "title": "Distribution and Confidence Intervals of Maple Leaf Samples",
+    "section": "",
+    "text": "The example aims to demonstrate estimation and interpretation of prediction intervals and confidence intervals. At the end, the two samples are compared with respect to variance and mean values.\nThe experimental hypotheses is, that the sampling strategy has an influence on the parameters of the distribution, i.e. that a sampling bias may occur. Here we leave it open, if the “subjective sampling” strategy prefers bigger or smaller leaves or if it has an influence on variance. The result is to be visualized with bar charts and box plots. We use the leave width as an example, an analysis of the other variables is left as an optional exercise.\nWe can now derive the following statistical hypotheses about the variance:\n\n\\(H_0\\): The variance of both samples is the same.\n\\(H_a\\): The samples have different variance.\n\nand about the mean:\n\n\\(H_0\\): The mean of both samples is the same.\n\\(H_a\\): The mean values of the samples are different.",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Maple Leaf Samples"
+    ]
+  },
+  {
+    "objectID": "qmd/04-distributions-leaves.html#prepare-and-inspect-data",
+    "href": "qmd/04-distributions-leaves.html#prepare-and-inspect-data",
+    "title": "Distribution and Confidence Intervals of Maple Leaf Samples",
+    "section": "3.1 Prepare and inspect data",
+    "text": "3.1 Prepare and inspect data\nThe data set is available from your local learning management system (LMS, e.g. OPAL at TU Dresden) or publicly from https://tpetzoldt.github.io/datasets/data/leaves.csv.\n\nDownload the data set leaves.csv and use one of RStudio’s “Import Dataset” wizards.\nAlternative: use read.csv().\n\n\n\nShow code\n#  ... do it\n\n\n\nplot everything, just for testing:\n\n\n\nShow code\nplot(leaves)\n\n\n\nFirst, let’s apply a traditional approach and split leaves in two separate tables for the samples HSE and MHYB:\n\n\n\nShow code\nhyb &lt;- subset(leaves, group == \"HYB\")\nhse &lt;- subset(leaves, group == \"HSE\")\n\n\n\nThen, compare leaf width of both groups graphically:\n\n\n\nShow code\nboxplot(hse$width, hyb$width, names=c(\"HSE\", \"HYB\"))",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Maple Leaf Samples"
+    ]
+  },
+  {
+    "objectID": "qmd/04-distributions-leaves.html#check-distribution",
+    "href": "qmd/04-distributions-leaves.html#check-distribution",
+    "title": "Distribution and Confidence Intervals of Maple Leaf Samples",
+    "section": "3.2 Check distribution",
+    "text": "3.2 Check distribution\n\n\nShow code\n# use `hist`, `qqnorm`, `qqline`\n# ...",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Maple Leaf Samples"
+    ]
+  },
+  {
+    "objectID": "qmd/04-distributions-leaves.html#sample-statistics-and-prediction-interval",
+    "href": "qmd/04-distributions-leaves.html#sample-statistics-and-prediction-interval",
+    "title": "Distribution and Confidence Intervals of Maple Leaf Samples",
+    "section": "3.3 Sample statistics and prediction interval",
+    "text": "3.3 Sample statistics and prediction interval\nIn a first analysis, we want to estimate the interval that covers 95% of leaves, defined by their width. As a first method, we take the empirical quantiles directly from the data. The method is also called “nonparametric,” because we don’t calculate mean and standard deviation and do not assume a normal or any other distribution.\n\n\nShow code\nquantile(hse$width, p = c(0.025, 0.975))\n\n\nNow, we compare this empirical result with a method that relies on a specific distribution. If our initial graphical visualization (e.g., the histogram) suggests the data is reasonably symmetric and bell-shaped, we can proceed with a parametric assumption.\nWe first calculate mean, sd, N and se for “hse” data set:\n\n\nShow code\nhse.mean &lt;- mean(hse$width)\nhse.sd   &lt;- sd(hse$width)\nhse.N    &lt;- length(hse$width)\nhse.se   &lt;- hse.sd/sqrt(hse.N)\n\n\nThen we estimate an approximate two-sided 95% prediction interval (\\(PI\\)) for the sample using a simplified approach based on the quantiles of the theoretical normal distribution (\\(z_{\\alpha/2} \\approx 1.96\\)) and the sample parameters mean \\(\\bar{x}\\) and standard deviation (\\(s\\)):\n\\[\nPI = \\bar{x} \\pm z \\cdot s\n\\]\nThis is the interval where we would predict a new single observation to fall with 95% confidence.\n\n\nShow code\nhse.95 &lt;- hse.mean + c(-1.96, 1.96) * hse.sd\nhse.95\n\n\nInstead of using 1.96, we could also use the quantile function qnorm(0.975) for the upper interval or qnorm(c(0.025, 0.975)) for the lower and upper in parallel:\n\n\nShow code\nhse.95 &lt;- hse.mean + qnorm(c(0.025, 0.975)) * hse.sd\nhse.95\n\n\nNow we plot the data and indicate the 95% interval:\n\n\nShow code\nplot(hse$width)\nabline(h = hse.95, col=\"red\")\n\n\n… and the same as histogram:\n\n\nShow code\nhist(hse$width)\nabline(v = hse.95, col=\"red\")\nrug(hse$width, col=\"blue\")",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Maple Leaf Samples"
+    ]
+  },
+  {
+    "objectID": "qmd/04-distributions-leaves.html#confidence-interval-of-the-mean",
+    "href": "qmd/04-distributions-leaves.html#confidence-interval-of-the-mean",
+    "title": "Distribution and Confidence Intervals of Maple Leaf Samples",
+    "section": "3.4 Confidence interval of the mean",
+    "text": "3.4 Confidence interval of the mean\nThe confidence interval (\\(CI\\)) of the mean tells us how precise a mean value was estimated from data. If the sample size is “large enough”, the distribution of the raw data does not necessarily need to be normal, because then mean values tend to approximate a normal distribution due to the central limit theorem.\nThe formula for the CI of the mean is: \\[CI = \\bar{x} \\pm t_{\\alpha/2, n-1} \\cdot \\frac{s}{\\sqrt{N}}\\]\n\n3.4.1 Confidence interval of the mean for the “hse” data\nTask: Calculate the confidence interval of the mean value of the “hse” data set using the quantile function (qt) of the t-distribution1:\n\n\nShow code\nhse.ci &lt;- hse.mean + qt(p = c(0.025, 0.975), df = hse.N - 1) * hse.se\n\n\nNow indicate the confidence interval of the mean in the histogram.\n\n\nShow code\nabline(v = hse.ci, col=\"magenta\")\n\n\n\n\n3.4.2 Confidence interval for the mean of the “hyb” data\n\n\nShow code\n#  Do the same for the \"hyb\" data, calculate mean, sd, N, se and ci.\n# ...\n\n\n\n\n3.4.3 Discussion: Comparison and interpretation\nExplain the fundamental statistical reason why the 95% Prediction Interval (PI) for the leaf width is always significantly wider than the 95% Confidence Interval (CI) for the mean leaf width, even though both intervals are calculated from the same data set (hse).",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Maple Leaf Samples"
+    ]
+  },
+  {
+    "objectID": "qmd/04-distributions-leaves.html#comparison-of-the-samples",
+    "href": "qmd/04-distributions-leaves.html#comparison-of-the-samples",
+    "title": "Distribution and Confidence Intervals of Maple Leaf Samples",
+    "section": "3.5 Comparison of the samples",
+    "text": "3.5 Comparison of the samples\nTo compare the two samples. we already created box plots at the beginning. Instead of a boxplot, we can also use a bar chart with confidence intervals.\nThis can be done with the add-on package gplots (not to be confused with ggplot):\nSolution A) with package gplots\n\n\nShow code\nlibrary(\"gplots\")\nbarplot2(height = c(hyb.mean, hse.mean),\n         ci.l   = c(hyb.ci[1], hse.ci[1]),\n         ci.u   = c(hyb.ci[2], hse.ci[2]),\n         plot.ci = TRUE,\n         names.arg=c(\"Hyb\", \"HSE\")\n)\n\n\nSolution B) without add-on packages (optional)\nHere we use a standard bar chart, and line segments for the error bars. One small problem arises, because barplot creates an own x-scaling. The good news is, that barplot returns its x-scale. We can store it in a variable, e.g. x that can then be used in subsequent code.\n\n\nShow code\nx &lt;- barplot(c(hyb.mean, hse.mean),\n  names.arg=c(\"HYB\", \"HSE\"), ylim=c(0, 150))\nsegments(x0=x[1], y0=hyb.ci[1], y1=hyb.ci[2], lwd=2)\nsegments(x0=x[2], y0=hse.ci[1], y1=hse.ci[2], lwd=2)",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Maple Leaf Samples"
+    ]
+  },
+  {
+    "objectID": "qmd/04-distributions-leaves.html#is-the-difference-between-the-samples-statistically-significant",
+    "href": "qmd/04-distributions-leaves.html#is-the-difference-between-the-samples-statistically-significant",
+    "title": "Distribution and Confidence Intervals of Maple Leaf Samples",
+    "section": "3.6 Is the difference between the samples statistically significant?",
+    "text": "3.6 Is the difference between the samples statistically significant?\nIn the following, we compare the two samples with t- and F-Tests.\nHypotheses:\n\\(H_0\\): Both samples have the same mean width and variance.\n\\(H_A\\): The mean width (and possibly also the variance) differ because of more subjective sampling of HSE students. They may have prefered bigger or the nice small leaves.\n\n\nShow code\nt.test(width ~ group, data = leaves)\n\n\nPerform also the classical t-test (var.equal=TRUE) and the F-test (var.test). Calculate absolute and relative effect size (mean differences) and interpret the results of all 3 tests.\n\n\nShow code\n# var.test(...)\n# t.test(...)\n# ...",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Maple Leaf Samples"
+    ]
+  },
+  {
+    "objectID": "qmd/04-distributions-leaves.html#calculation-of-summary-statistics-with-dplyr",
+    "href": "qmd/04-distributions-leaves.html#calculation-of-summary-statistics-with-dplyr",
+    "title": "Distribution and Confidence Intervals of Maple Leaf Samples",
+    "section": "4.1 Calculation of summary statistics with dplyr",
+    "text": "4.1 Calculation of summary statistics with dplyr\n\n\nShow code\nlibrary(\"dplyr\")\nleaves &lt;- read.csv(\"data/leaves.csv\")\n\nstats &lt;-\n  leaves |&gt;\n    group_by(group) |&gt;\n    summarize(mean = mean(width), sd = sd(width),\n              N = length(width), se = sd/sqrt(N),\n              lwr = mean + qt(p = 0.025, df = N-1) * se,\n              upr = mean + qt(p = 0.975, df = N-1) * se\n             )\n\nstats",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Maple Leaf Samples"
+    ]
+  },
+  {
+    "objectID": "qmd/04-distributions-leaves.html#barchart-and-errorbars-with-ggplot2",
+    "href": "qmd/04-distributions-leaves.html#barchart-and-errorbars-with-ggplot2",
+    "title": "Distribution and Confidence Intervals of Maple Leaf Samples",
+    "section": "4.2 Barchart and errorbars with ggplot2",
+    "text": "4.2 Barchart and errorbars with ggplot2\n\n\nShow code\nlibrary(\"ggplot2\")\nstats |&gt;\n  ggplot(aes(x=group, y=mean, min=lwr, max=upr))  +\n    geom_col() + geom_errorbar(width=0.2)",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Maple Leaf Samples"
+    ]
+  },
+  {
+    "objectID": "qmd/04-distributions-leaves.html#a-footnote-about-prediction-intervals",
+    "href": "qmd/04-distributions-leaves.html#a-footnote-about-prediction-intervals",
+    "title": "Distribution and Confidence Intervals of Maple Leaf Samples",
+    "section": "4.3 A footnote about prediction intervals",
+    "text": "4.3 A footnote about prediction intervals\nThe simplified \\(\\bar{x} \\pm z \\cdot s\\) formula used above is an approximation. A statistically rigorous 95% prediction interval, especially for smaller samples, needs two corrections.\nFirst, we would use the t-distribution with the quantile \\(t_{\\alpha/2, n-1}\\) (or qt(alpha/2, n-1) in R) instead of the normal quantiles (\\(\\pm 1.96\\)). Then we add a term \\(\\sqrt{1+1/N}\\) that corrects for the sample parameters. The full formula for a single future observation is then:\n\\[\\text{PI} = \\bar{x} \\pm t_{\\alpha/2, n-1} \\cdot s \\cdot \\sqrt{1 + \\frac{1}{N}}\\]\nThe prediction interval is related to the so-called “tolerance interval”. Both are the same if the population parameters \\(\\mu, \\sigma\\) are known or the sample size is very big. However, there are theoretical and practical differences in case of small sample size.",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Maple Leaf Samples"
+    ]
+  },
+  {
+    "objectID": "qmd/04-distributions-leaves.html#footnotes",
+    "href": "qmd/04-distributions-leaves.html#footnotes",
+    "title": "Distribution and Confidence Intervals of Maple Leaf Samples",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nas the sample size is not too small, you may also compare this with 1.96 or 2.0↩︎",
+    "crumbs": [
+      "Projects",
+      "Distribution and Confidence Intervals of Maple Leaf Samples"
+    ]
+  },
+  {
+    "objectID": "qmd/06-classical-tests.html#preface",
+    "href": "qmd/06-classical-tests.html#preface",
+    "title": "Classical Tests",
+    "section": "Preface",
+    "text": "Preface\nThe following exercises demonstrate some of the most common classical tests by means of simple examples.",
+    "crumbs": [
+      "Presentations",
+      "Classical Tests"
+    ]
+  },
+  {
+    "objectID": "qmd/06-classical-tests.html#a-sleep-duration-study-statistical-tests-of-location",
+    "href": "qmd/06-classical-tests.html#a-sleep-duration-study-statistical-tests-of-location",
+    "title": "Classical Tests",
+    "section": "A sleep duration study: statistical tests of location",
+    "text": "A sleep duration study: statistical tests of location\nThe example is inspired by a classical test data set (Student, 1908) about a study with two groups of persons treated with two different pharmaceutical drugs.\nDrug 1: 8.7, 6.4, 7.8, 6.8, 7.9, 11.4, 11.7, 8.8, 8, 10\nDrug 2: 9.9, 8.8, 9.1, 8.1, 7.9, 12.4, 13.5, 9.6, 12.6, 11.4\nThe data are the duration of sleeping time in hours. It is assumed that the normal sleeping time would be 8 hours.",
+    "crumbs": [
+      "Presentations",
+      "Classical Tests"
+    ]
+  },
+  {
+    "objectID": "qmd/06-classical-tests.html#one-sample-t-test",
+    "href": "qmd/06-classical-tests.html#one-sample-t-test",
+    "title": "Classical Tests",
+    "section": "One sample t-Test",
+    "text": "One sample t-Test\nLet’s test whether the drugs increased or decreased sleeping time, compared to 8 hours:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Presentations",
+      "Classical Tests"
+    ]
+  },
+  {
+    "objectID": "qmd/06-classical-tests.html#two-sample-t-test",
+    "href": "qmd/06-classical-tests.html#two-sample-t-test",
+    "title": "Classical Tests",
+    "section": "Two sample t-Test",
+    "text": "Two sample t-Test\nThe two sample t-Test is used to compare two groups of data: Related to our example, we test the following hypotheses:\n\\(H_0\\): Both drugs have the same effect.\n\\(H_A\\): The drugs have a different effect, i.e. one of the drugs is stronger.",
+    "crumbs": [
+      "Presentations",
+      "Classical Tests"
+    ]
+  },
+  {
+    "objectID": "qmd/06-classical-tests.html#paired-t-test",
+    "href": "qmd/06-classical-tests.html#paired-t-test",
+    "title": "Classical Tests",
+    "section": "Paired t-test",
+    "text": "Paired t-test\nGiven is a number of students that passed an examination in statistics. The examination was written two times, one time before and one time after an additional series of lectures. The values represent the numbers of points approached during the examination. Check whether the additional lectures had any positive effect:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Presentations",
+      "Classical Tests"
+    ]
+  },
+  {
+    "objectID": "qmd/06-classical-tests.html#wilcoxon-test-optional",
+    "href": "qmd/06-classical-tests.html#wilcoxon-test-optional",
+    "title": "Classical Tests",
+    "section": "Wilcoxon test (optional)",
+    "text": "Wilcoxon test (optional)\nThe Mann-Whitney and Wilxon tests are nonparametric tests of location. “Nonparametric” means, that the general location of the distributions is compared and not a parameter like the mean. This makes the test independent of distributional assumptions, but can sometimes lead to a vague interpretations.",
+    "crumbs": [
+      "Presentations",
+      "Classical Tests"
+    ]
+  },
+  {
+    "objectID": "qmd/06-classical-tests.html#own-project-weight-of-clementine-fruits",
+    "href": "qmd/06-classical-tests.html#own-project-weight-of-clementine-fruits",
+    "title": "Classical Tests",
+    "section": "Own project: Weight of Clementine fruits",
+    "text": "Own project: Weight of Clementine fruits\nImport the Clementines data set (fruits-2023-hse.csv)1.\n\nThink about an appropriate data structure and use a suitable statistical test to compare the weights.\nCheck variance homogeneity and normal distribution graphically.\nCan the weights from each brand be considered as independent samples?\n\nfruits.csv available from: https://tpetzoldt.github.io/datasets/data/fruits-2023-hse.csv",
+    "crumbs": [
+      "Presentations",
+      "Classical Tests"
+    ]
+  },
+  {
+    "objectID": "qmd/06-classical-tests.html#chi-squared-test-and-fishers-exact-test-optional",
+    "href": "qmd/06-classical-tests.html#chi-squared-test-and-fishers-exact-test-optional",
+    "title": "Classical Tests",
+    "section": "Chi-squared test and Fisher’s exact test (optional)",
+    "text": "Chi-squared test and Fisher’s exact test (optional)\nIntroduction\nTaken from Agresti (2002), Fisher’s Tea Drinker:\n“A British woman claimed to be able to distinguish whether milk or tea was added to the cup first. To test, she was given 8 cups of tea, in four of which milk was added first. The null hypothesis is that there is no association between the true order of pouring and the woman’s guess, the alternative that there is a positive association (that the odds ratio is greater than 1).”",
+    "crumbs": [
+      "Presentations",
+      "Classical Tests"
+    ]
+  },
+  {
+    "objectID": "qmd/06-classical-tests.html#exercise-solutions",
+    "href": "qmd/06-classical-tests.html#exercise-solutions",
+    "title": "Classical Tests",
+    "section": "Exercise Solutions",
+    "text": "Exercise Solutions",
+    "crumbs": [
+      "Presentations",
+      "Classical Tests"
+    ]
+  },
+  {
+    "objectID": "qmd/06-classical-tests.html#references",
+    "href": "qmd/06-classical-tests.html#references",
+    "title": "Classical Tests",
+    "section": "References",
+    "text": "References\n\nStudent (1908) - The probable error of a mean\nDelacre et al. (2017) - Why psychologists should by default use Welch’s t-test instead of Student’s t-test\n\n\n\n\n\nDelacre, M., Lakens, D., & Leys, C. (2017). Why psychologists should by default use Welch’s t-test instead of Student’s t-test. International Review of Social Psychology, 30(1), 92–101. https://doi.org/10.5334/irsp.82\n\n\nStudent. (1908). The probable error of a mean. Biometrika, 6(1), 1–25. https://doi.org/10.2307/2331554",
+    "crumbs": [
+      "Presentations",
+      "Classical Tests"
+    ]
+  },
+  {
+    "objectID": "qmd/test_stat.html#statistical-testing-framework",
+    "href": "qmd/test_stat.html#statistical-testing-framework",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Statistical Testing Framework",
+    "text": "Statistical Testing Framework",
+    "crumbs": [
+      "Projects",
+      "Statistical Tests with R - Complete Guide"
+    ]
+  },
+  {
+    "objectID": "qmd/test_stat.html#one-sample-t-test",
+    "href": "qmd/test_stat.html#one-sample-t-test",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "One Sample t-Test",
+    "text": "One Sample t-Test\nMathematical Foundation\nTests whether population mean \\(\\mu\\) equals specified value \\(\\mu_0\\):\nTest statistic: \\(t = \\dfrac{\\bar{x} - \\mu_0}{s/\\sqrt{n}}\\)\nwhere:\n\n\n\n\\(\\bar{x}\\)\n\n\nsample mean\n\n\n\n\n\\(s\\)\n\n\nsample standard deviation\n\n\n\n\n\\(n\\)\n\n\nsample size\n\n\n\n\n\\(df = n - 1\\)\n\n\ndegrees of freedom\n\n\n\n\n\n\nData are normally distributed\n\n\n\n\n\n\nObservations are independent",
+    "crumbs": [
+      "Projects",
+      "Statistical Tests with R - Complete Guide"
+    ]
+  },
+  {
+    "objectID": "qmd/test_stat.html#two-sample-t-test",
+    "href": "qmd/test_stat.html#two-sample-t-test",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Two Sample t-Test",
+    "text": "Two Sample t-Test\nIndependent Samples t-Test\nTests whether two population means are equal:\nTest statistic: \\[t = \\frac{\\bar{x}_1 - \\bar{x}_2}{s_p \\sqrt{\\frac{1}{n_1} + \\frac{1}{n_2}}}\\]\nPooled standard deviation: \\[s_p = \\sqrt{\\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 - 2}}\\]\nDegrees of freedom: \\(df = n_1 + n_2 - 2\\)",
+    "crumbs": [
+      "Projects",
+      "Statistical Tests with R - Complete Guide"
+    ]
+  },
+  {
+    "objectID": "qmd/test_stat.html#paired-t-test",
+    "href": "qmd/test_stat.html#paired-t-test",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Paired t-Test",
+    "text": "Paired t-Test\nMathematical Formulation\nTests mean difference between paired observations:\nTest statistic: \\(t = \\dfrac{\\bar{d}}{s_d/\\sqrt{n}}\\)\nwhere:\n\n\n\n\\(d_i = x_{i1} - x_{i2}\\)\n\n\npaired differences\n\n\n\n\n\\(\\bar{d}\\)\n\n\nmean of differences\n\n\n\n\n\\(s_d\\)\n\n\nstandard deviation of differences\n\n\n\n\n\\(n\\)\n\n\nnumber of pairs\n\n\n\n\n\\(df = n - 1\\)\n\n\ndegrees of freedom\n\n\n\n\n\n\nDifferences are normally distributed\n\n\n\n\n\n\nPairs are dependent/related",
+    "crumbs": [
+      "Projects",
+      "Statistical Tests with R - Complete Guide"
+    ]
+  },
+  {
+    "objectID": "qmd/test_stat.html#effect-size-measures",
+    "href": "qmd/test_stat.html#effect-size-measures",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Effect Size Measures",
+    "text": "Effect Size Measures\nCohen’s d\nStandardized mean difference:\nFor one sample: \\(d = \\frac{\\bar{x} - \\mu_0}{s}\\)\nFor two independent samples: \\(d = \\frac{\\bar{x}_1 - \\bar{x}_2}{s_p}\\)\n\n\n\n\\(s_p\\)\n\n\npooled standard deviation\n\n\n\n\n0.2\n\n\nSmall effect\n\n\n\n\n0.5\n\n\nMedium effect\n\n\n\n\n0.8\n\n\nLarge effect",
+    "crumbs": [
+      "Projects",
+      "Statistical Tests with R - Complete Guide"
+    ]
+  },
+  {
+    "objectID": "qmd/test_stat.html#non-parametric-tests",
+    "href": "qmd/test_stat.html#non-parametric-tests",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Non-Parametric Tests",
+    "text": "Non-Parametric Tests\nMann-Whitney U Test (Wilcoxon Rank-Sum)\nNon-parametric alternative to two-sample t-test:\nTest statistic: \\[U = \\min(U_1, U_2)\\] where: \\[U_1 = n_1n_2 + \\frac{n_1(n_1+1)}{2} - R_1\\] \\[U_2 = n_1n_2 + \\frac{n_2(n_2+1)}{2} - R_2\\]\n\n\\(R_1, R_2\\) = sum of ranks for groups 1 and 2\nTests whether distributions differ in location",
+    "crumbs": [
+      "Projects",
+      "Statistical Tests with R - Complete Guide"
+    ]
+  },
+  {
+    "objectID": "qmd/test_stat.html#chi-square-tests",
+    "href": "qmd/test_stat.html#chi-square-tests",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Chi-Square Tests",
+    "text": "Chi-Square Tests\nChi-Square Goodness of Fit Test\nTests whether observed frequencies match expected distribution:\nTest statistic: \\[\\chi^2 = \\sum \\frac{(O_i - E_i)^2}{E_i}\\]\nwhere:\n\n\n\n\\(O_i\\)\n\n\nobserved frequency in category i\n\n\n\n\n\\(E_i\\)\n\n\nexpected frequency in category i\n\n\n\n\n\\(df\\)\n\n\n\\(k - 1\\)\n\n\n\n\n\\(k\\)\n\n\n# where k = number of categories",
+    "crumbs": [
+      "Projects",
+      "Statistical Tests with R - Complete Guide"
+    ]
+  },
+  {
+    "objectID": "qmd/test_stat.html#fishers-exact-test",
+    "href": "qmd/test_stat.html#fishers-exact-test",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Fisher’s Exact Test",
+    "text": "Fisher’s Exact Test\nMathematical Basis\nExact test for 2×2 contingency tables:\nProbability of observed configuration: \\[p = \\frac{\\binom{a+b}{a} \\binom{c+d}{c} \\binom{a+c}{a} \\binom{b+d}{b}}{\\binom{n}{a+b}}\\]\nwhere the table is:\n         | Col1 | Col2 | Total\nRow1     |  a   |  b   | a+b\nRow2     |  c   |  d   | c+d\nTotal    | a+c  | b+d  | n\nUse when: Expected frequencies &lt; 5 or small sample sizes",
+    "crumbs": [
+      "Projects",
+      "Statistical Tests with R - Complete Guide"
+    ]
+  },
+  {
+    "objectID": "qmd/test_stat.html#anova-analysis-of-variance",
+    "href": "qmd/test_stat.html#anova-analysis-of-variance",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "ANOVA (Analysis of Variance)",
+    "text": "ANOVA (Analysis of Variance)\nOne-Way ANOVA\nTests equality of means across 3+ groups:\nF-statistic: \\(F = \\frac{MS_{B}}{MS_{W}}\\)\nwhere:\n\n\n\nMSB\n\n\n\\(MS_B = \\frac{SS_B}{df_B}\\)\n\n\n\\(df_{B} = k - 1\\)\n\n\n\n\nMSW\n\n\n\\(MS_W = \\frac{SS_W}{df_W}\\)\n\n\n\\(df_{W} = N - k\\)\n\n\n\n\nSSB\n\n\n\\(SS_B = \\sum n_i(\\bar{x}_i - \\bar{x})^2\\)\n\n\n\n\n\n\nSSW\n\n\n\\(SS_W = \\sum \\sum (x_{ij} - \\bar{x}_i)^2\\)\n\n\n\n\n\n\nB = Between\nW = Within",
+    "crumbs": [
+      "Projects",
+      "Statistical Tests with R - Complete Guide"
+    ]
+  },
+  {
+    "objectID": "qmd/test_stat.html#assumption-checking",
+    "href": "qmd/test_stat.html#assumption-checking",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Assumption Checking",
+    "text": "Assumption Checking\nNormality Tests",
+    "crumbs": [
+      "Projects",
+      "Statistical Tests with R - Complete Guide"
+    ]
+  },
+  {
+    "objectID": "qmd/test_stat.html#power-analysis",
+    "href": "qmd/test_stat.html#power-analysis",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Power Analysis",
+    "text": "Power Analysis\nSample Size Calculation\nFor t-test: \\[n = \\left( \\frac{(z_{1-\\alpha/2} + z_{1-\\beta}) \\cdot \\sigma}{\\delta} \\right)^2\\]\nwhere:\n\n\n\n\\(\\alpha\\)\n\n\nsig. level\n\n\n\n\n\\(\\beta\\)\n\n\nType II error rate\n\n\n\n\n\\(1-\\beta\\)\n\n\npower\n\n\n\n\n\\(\\delta\\)\n\n\neffect size\n\n\n\n\n\\(\\sigma\\)\n\n\nstandard deviation",
+    "crumbs": [
+      "Projects",
+      "Statistical Tests with R - Complete Guide"
+    ]
+  },
+  {
+    "objectID": "qmd/test_stat.html#summary-table-of-tests",
+    "href": "qmd/test_stat.html#summary-table-of-tests",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Summary Table of Tests",
+    "text": "Summary Table of Tests\n\n\n\n\n\n\n\n\n\nTest\nPurpose\nR Function\nKey Assumptions\n\n\n\n\nOne-sample t-test\nCompare mean to value\nt.test(x, mu)\nNormality, independence\n\n\nTwo-sample t-test\nCompare two means\nt.test(x, y)\nNormality, equal variances*\n\n\nPaired t-test\nCompare paired means\nt.test(x, y, paired=TRUE)\nNormality of differences\n\n\nMann-Whitney\nNon-parametric two samples\nwilcox.test(x, y)\nIndependent samples\n\n\nWilcoxon signed-rank\nNon-parametric paired\nwilcox.test(x, y, paired=TRUE)\nPaired data\n\n\nChi-square\nCategorical association\nchisq.test(table)\nExpected frequencies ≥ 5\n\n\nFisher’s exact\nSmall contingency tables\nfisher.test(table)\nFixed margins\n\n\nANOVA\nCompare 3+ means\naov(y ~ group)\nNormality, equal variances\n\n\n\n*Welch’s t-test doesn’t assume equal variances",
+    "crumbs": [
+      "Projects",
+      "Statistical Tests with R - Complete Guide"
+    ]
+  },
+  {
+    "objectID": "qmd/test_stat.html#best-practices",
+    "href": "qmd/test_stat.html#best-practices",
+    "title": "Statistical Tests with R - Complete Guide",
+    "section": "Best Practices",
+    "text": "Best Practices\n\nAlways check assumptions before interpreting results\nUse non-parametric tests when assumptions are violated\nReport effect sizes along with p-values\nConsider multiple testing corrections when appropriate\nUse confidence intervals to understand precision\nVisualize your data before running tests",
+    "crumbs": [
+      "Projects",
+      "Statistical Tests with R - Complete Guide"
+    ]
+  }
+]
