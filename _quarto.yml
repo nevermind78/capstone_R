@@ -45,8 +45,8 @@ webr:
   packages: ["dplyr", "ggplot2", "readxl", "tidyr", "lubridate", "car", "lmtest"]
 
 execute:
-  freeze: auto
-  cache: true
+  freeze: false
+  cache: false
   echo: false
   warning: false
   message: false
