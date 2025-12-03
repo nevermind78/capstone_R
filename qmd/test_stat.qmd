@@ -1,5 +1,7 @@
 ---
 title: "Statistical Tests with R - Complete Guide"
+execute:
+  engine: r 
 format: 
   live-revealjs:
     scrollable: true
